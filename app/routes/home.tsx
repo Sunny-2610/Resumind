@@ -1,4 +1,6 @@
+import Navbar from "~/Components/Navbar";
 import type { Route } from "./+types/home";
+import { resumes } from "Constants";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,15 +10,20 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <main className="bg-[url('/public/images/bg-main.svg)] bg-cover" >
-            <section className="main-section">
-              <div className="page-heading">
-      <h1>
-        Track Your Applications & Resume Ratings
-      </h1>
-      <h2>Review your submissions and check AI-powered feedback.</h2>
-              </div>
+  return (
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+      <Navbar />
 
-            </section>
-  </main>
+      <section className="main-section">
+        <div className="page-heading">
+          <h1>Track Your Applications & Resume Ratings</h1>
+          <h2>Review your submissions and check AI-powered feedback.</h2>
+        </div>
+      </section>
+
+      {resumes.map((resume) => (
+        <h1 key={resume.jobTitle}>{resume.jobTitle}</h1>
+      ))}
+    </main>
+  );
 }
